@@ -1,11 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Button, View, Text, FlatList } from 'react-native';
+import InTime from "./components/inTime";
 
 export default function App() {
-  return (
+  const [inTime, setInTime] = useState(Date.now());
+  
+  return ( 
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.container}>
+        <Button
+          title="In"
+          color="green"
+          onPress={() => setInTime(inTime)}>
+          <Text style={styles.text}>In</Text>
+        </Button>
+      </View>
+      <View style={styles.container}>
+        <FlatList
+          keyExtractor={(item, index) => item.id}
+          data={inTime}
+          renderItem={itemData => (
+          <InTime
+            title={itemData.item.value}
+            id={itemData.item.id} />)}
+        ></FlatList>
+      </View>
     </View>
   );
 }
@@ -17,4 +36,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
