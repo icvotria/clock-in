@@ -8,7 +8,7 @@ import {
 const InTime = props => {
   return ( 
   <View style={styles.listItem}>
-    <Text>{props.title}</Text>
+    <Text>hiya</Text>
   </View>
   )
 }
